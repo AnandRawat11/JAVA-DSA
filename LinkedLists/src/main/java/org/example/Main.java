@@ -64,6 +64,6 @@ public class Main {
 //        list.delete(25);
 //        System.out.println("After delete 25");
 //        list.display();
-
+        System.out.println("hello");
     }
 }
