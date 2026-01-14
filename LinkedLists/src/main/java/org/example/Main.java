@@ -64,6 +64,21 @@ public class Main {
 //        list.delete(25);
 //        System.out.println("After delete 25");
 //        list.display();
-        System.out.println("hello");
+        LL l1 = new LL();
+        LL l2 = new LL();
+        l1.insertLast(1);
+        l1.insertLast(2);
+        l1.insertLast(4);
+        l2.insertLast(1);
+        l2.insertLast(3);
+        l2.insertLast(4);
+
+        Node newNode = mergeSortedLists(l1,l2);
+        Node temp = newNode;
+        while(temp != null) {
+            System.out.println(temp.data + " ");
+            temp = temp.next;
+        }
+
     }
 }

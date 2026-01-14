@@ -131,7 +131,38 @@ public class LL {
         node.next = insertRec(data, index--, node.next);
         return node;
     }
-
+    public void removeDuplicates(){
+        if(head == null){
+            return;
+        }
+        Node node = head;
+        while(node != null){
+            if(node.data == node.next.data){
+                node.next = node.next.next;
+                size--;
+            }else{
+                node = node.next;
+            }
+        }
+        return head;
+    }
+    public Node mergeSortedLists(Node h1, Node h2){
+        Node dummyhead = new Node();
+        Node temp = dummyhead;
+        while(h1 != null && h2 != null){
+            if(h1.data < h2.data){
+                temp.next = h1;
+                h1 = h1.next;
+                temp = temp.next;
+            }else{
+                temp.next = h2;
+                h2 = h2.next;
+                temp = temp.next;
+            }
+        }
+        temp.next = (h1 != null)? h1: h2;
+        return dummyhead;
+    }
     public void reverseBetween(int left, int right) {
         if(left == right){
             return ;
@@ -192,6 +223,47 @@ public class LL {
         }
         return prev;
     }
+    public Node reverseKGroup(Node head, int k) {
+        if (k <= 1 || head == null) {
+            return head;
+        }
+
+        Node prev = null;
+        Node curr = head;
+
+        while (true) {
+
+            Node check = curr;
+            for (int i = 0; i < k; i++) {
+                if (check == null)
+                    return head;
+                check = check.next;
+            }
+
+            Node last = prev;
+            Node newEnd = curr;
+
+            Node next = curr.next;
+            for (int i = 0; i < k && curr != null; i++) {
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+                if (next != null) {
+                    next = next.next;
+                }
+            }
+            if (last != null) {
+                last.next = prev;
+            } else {
+                head = prev;
+            }
+            newEnd.next = curr;
+            if (curr == null)
+                break;
+            prev = newEnd;
+        }
+        return head;
+    }
     public boolean isPalindrome(){
         Node mid =  middleNode(head);
         Node headSecond = reverseList(mid);
@@ -208,6 +280,26 @@ public class LL {
         reverseList(reReverseHead);
         return head == null || headSecond == null;
 
+    }
+    public void reorderList(Node head){
+        if(head == null || head.next == null){
+            return;
+        }
+        Node mid = middleNode(head);
+        Node hf = head;
+        Node hs = reverseList(mid);
+        while(hf != null && hs != null){
+            Node temp = hf.next;
+            hf.next = hs;
+            hf = temp;
+            temp = hs.next;
+            hs.next = hf;
+            hs = temp;
+        }
+//        setting the tail to null
+        if(hf != null){
+            hf.next = null;
+        }
     }
 
 }
