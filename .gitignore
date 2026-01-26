@@ -1,1 +1,17 @@
+# Java compiled files
+*.class
+
+# Build folders
+target/
+out/
+bin/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# macOS junk
 .DS_Store
